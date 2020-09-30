@@ -23,26 +23,86 @@ class Program
         points[8] = new char[] { ' ' };
         points[9] = new char[] { ' ' };
 
-        while (true)
+
+        using (var vFReader = new VideoFileReader())
         {
-            using (var vFReader = new VideoFileReader())
+            for (int j = 0; j < 1; j++)
             {
-                vFReader.Open("src/tonton_video_0.mp4");
+                vFReader.Open("src/tonton_video_6.mp4");
                 for (int i = 0; i < vFReader.FrameCount; i++)
                 {
                     Bitmap bmpBaseOriginal = vFReader.ReadVideoFrame();
-                    Print(bmpBaseOriginal, points);
+                    Print(bmpBaseOriginal, points, true, 75, 51);
                     System.Threading.Thread.Sleep(100);
                     Console.SetCursorPosition(0, 0);
                 }
                 vFReader.Close();
             }
+            for (int j = 0; j < 5; j++)
+            {
+                vFReader.Open("src/tonton_video_5.mp4");
+                for (int i = 0; i < vFReader.FrameCount; i++)
+                {
+                    Bitmap bmpBaseOriginal = vFReader.ReadVideoFrame();
+                    Print(bmpBaseOriginal, points, true, 75, 51);
+                    System.Threading.Thread.Sleep(50);
+                    Console.SetCursorPosition(0, 0);
+                }
+                vFReader.Close();
+            }
+
+
+            for (int j = 0; j < 15; j++)
+            {
+                vFReader.Open("src/tonton_video_3.mp4");
+                for (int i = 0; i < vFReader.FrameCount; i++)
+                {
+                    Bitmap bmpBaseOriginal = vFReader.ReadVideoFrame();
+                    Print(bmpBaseOriginal, points, true, 75, 51);
+                    System.Threading.Thread.Sleep(100);
+                    Console.SetCursorPosition(0, 0);
+                }
+                vFReader.Close();
+            }
+            for (int j = 0; j < 1; j++)
+            {
+                vFReader.Open("src/tonton_video_1.mp4");
+                for (int i = 0; i < vFReader.FrameCount; i++)
+                {
+                    Bitmap bmpBaseOriginal = vFReader.ReadVideoFrame();
+                    Print(bmpBaseOriginal, points, true, 75, 51);
+                    System.Threading.Thread.Sleep(70);
+                    Console.SetCursorPosition(0, 0);
+                }
+            }
+            for (int j = 0; j < 1; j++)
+            {
+                vFReader.Open("src/tonton_video_2.mp4");
+                for (int i = 0; i < vFReader.FrameCount; i++)
+                {
+                    Bitmap bmpBaseOriginal = vFReader.ReadVideoFrame();
+                    Print(bmpBaseOriginal, points, true, 75, 51);
+                    System.Threading.Thread.Sleep(70);
+                    Console.SetCursorPosition(0, 0);
+                }
+            }
+            //while (true)
+            //{
+            //    Bitmap image = new Bitmap("src/happy.png");
+            //    Print(image, points, true, 75, 51);
+            //    System.Threading.Thread.Sleep(100);
+            //    Console.SetCursorPosition(0, 0);
+            //}
         }
+
     }
 
-    static void Print(Bitmap image, char[][] point,int width = 50, int height = 32)
+    static void Print(Bitmap image, char[][] point, bool resize = false, int width = 50, int height = 32)
     {
-        image = ResizeImage(image, width, height);
+        if (resize)
+        {
+            image = ResizeImage(image, width, height);
+        }
         Random r = new Random();
         for (int i = 0; i < image.Height; i++)
         {
